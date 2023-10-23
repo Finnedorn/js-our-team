@@ -112,33 +112,19 @@ btn.addEventListener('click', function() {
 
 //creo una nuova funzione che aggiunga una card nuova ma stavolta con img non vincolata alla cartella del sistema 
 function newcardMaker(member) {
-    let card = '';
     //creo una const con il template della card 
-    if(member.picture.startsWith('https') === true) {
-        card = `
-            <div class="col-4">
-                <div class="card my-3">
-                    <img class="card-img-top" url="${member.picture}" alt="photo of ${member.name}">
-                    <div class="card-body text-center">
-                        <h3 class="card-title fs-4">${member.name}</h3>
-                        <h4 class="card-text fs-5">${member.role}</h4>
-                    </div>
-                </div> 
-            </div>    
-        `;
-    } else {
-        card =`
-            <div class="col-4">
-                <div class="card my-3">
-                    <img class="card-img-top" src="${member.picture}" alt="photo of ${member.name}">
-                    <div class="card-body text-center">
-                        <h3 class="card-title fs-4">${member.name}</h3>
-                        <h4 class="card-text fs-5">${member.role}</h4>
-                    </div>
-                </div> 
-            </div>    
-        `;
-    };
+    let card = `
+        <div class="col-4">
+            <div class="card my-3">
+                <img class="card-img-top" src="${(member.picture.startsWith('http')) ? member.picture : 'img/' + member.picture}" alt="photo of ${member.name}">
+                <div class="card-body text-center">
+                    <h3 class="card-title fs-4">${member.name}</h3>
+                    <h4 class="card-text fs-5">${member.role}</h4>
+                </div>
+            </div> 
+        </div>    
+    `;
+    console.log(card);
     //la const è dichiarata nella funzione quindi devo fare un return per averla fuori 
     return card;
 };
