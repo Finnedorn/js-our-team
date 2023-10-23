@@ -5,9 +5,6 @@ Ogni membro è caratterizzato dalle seguenti informazioni: nome, ruolo e foto.
 BONUS :
 Organizzare i singoli membri in card/schede
 Aggiungere un nuovo membro al team
-Consigli del giorno:
-Ragioniamo come sempre a step.
-Prima la logica in italiano e poi traduciamo in codice.
 */
 
 
@@ -63,11 +60,14 @@ const cardContainer = document.querySelector('.row');
 console.dir(cardContainer);
 //creo una const in cui inserisco il testo
 let html = '';
+
+
 //creo un ciclo for che stampi ogni card
 for(let i = 0; i < ourTeam.length; i++) {
     //richiamo la funzione e mi stampo per ogni ciclo il div della card in console 
     html += cardMaker(ourTeam[i]);
 };
+
 console.log(html);
 //stampo nell'html gli elementi div delle card con le info degli obj
 cardContainer.innerHTML = html;
@@ -90,6 +90,8 @@ function cardMaker(member) {
     return card;
 };
 
+//richiamo il pulsante di invio del form 
+const btn = document.getElementById('addMember');
 
 
 
