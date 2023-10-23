@@ -58,7 +58,7 @@ const ourTeam = [
 //richiamo il div dove inserirò le card
 const cardContainer = document.querySelector('.row');
 console.dir(cardContainer);
-//creo una const in cui inserisco il testo
+//creo una const in cui inserisco il testo da stampare nell'html
 let html = '';
 
 
@@ -93,31 +93,52 @@ function cardMaker(member) {
 //richiamo il pulsante di invio del form 
 const btn = document.getElementById('addMember');
 
+//creo una funzione al click del bottone add member
 btn.addEventListener('click', function() {
+    //creo un obj che peschi i value dai form nell'html
     const newMember = {
         name: document.getElementById('memberName').value,
         role: document.getElementById('memberRole').value,
         picture: document.getElementById('memberPicture').value
     };
     console.log(newMember);
+    //pusha tutto nel macro array del team 
     ourTeam.push(newMember);
+    //aggiungi nell'html dentro al row delle card il prodotot della funzione 
     cardContainer.innerHTML += newcardMaker(newMember);
     
 });
 
+
+//creo una nuova funzione che aggiunga una card nuova ma stavolta con img non vincolata alla cartella del sistema 
 function newcardMaker(member) {
+    let card = '';
     //creo una const con il template della card 
-    const card = `
-        <div class="col-4">
-            <div class="card my-3">
-                <img class="card-img-top" url="${member.picture} " alt="photo of ${member.name}">
-                <div class="card-body text-center">
-                    <h3 class="card-title fs-4">${member.name}</h3>
-                    <h4 class="card-text fs-5">${member.role}</h4>
-                </div>
-            </div> 
-        </div>    
-    `;
+    if(member.picture.startsWith('https') === true) {
+        card = `
+            <div class="col-4">
+                <div class="card my-3">
+                    <img class="card-img-top" url="${member.picture}" alt="photo of ${member.name}">
+                    <div class="card-body text-center">
+                        <h3 class="card-title fs-4">${member.name}</h3>
+                        <h4 class="card-text fs-5">${member.role}</h4>
+                    </div>
+                </div> 
+            </div>    
+        `;
+    } else {
+        card =`
+            <div class="col-4">
+                <div class="card my-3">
+                    <img class="card-img-top" src="${member.picture}" alt="photo of ${member.name}">
+                    <div class="card-body text-center">
+                        <h3 class="card-title fs-4">${member.name}</h3>
+                        <h4 class="card-text fs-5">${member.role}</h4>
+                    </div>
+                </div> 
+            </div>    
+        `;
+    };
     //la const è dichiarata nella funzione quindi devo fare un return per averla fuori 
     return card;
 };
