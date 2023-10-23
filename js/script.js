@@ -2,16 +2,6 @@
 Utilizzando i dati forniti, creare un array di oggetti per rappresentare i membri del team.
 Ogni membro è caratterizzato dalle seguenti informazioni: nome, ruolo e foto.
 
-MILESTONE 0:
-Creare l’array di oggetti con le informazioni fornite.
-
-MILESTONE 1:
-Stampare su console, per ogni membro del team, le informazioni di nome, ruolo e la stringa della foto
-
-MILESTONE 2:
-Stampare le stesse informazioni su DOM sottoforma di stringhe
-Trasformare la stringa foto in una immagine effettiva
-
 BONUS :
 Organizzare i singoli membri in card/schede
 Aggiungere un nuovo membro al team
@@ -21,17 +11,92 @@ Prima la logica in italiano e poi traduciamo in codice.
 */
 
 
-
+//creo un prototipo dall'html di quello che sarà poi il contenuto che andrò a creare tramite js
 /*
 <div class="col-4">
     <div class="card">
-        <img class="card-img-top" src="" alt="">
+        <img class="card-img-top" src="img/ " alt="photo of ">
         <div class="card-body">
             <h3 class="card-title">nome e cognome</h3>
-            <h4 class="card-text"><t-lavorativo></t-lavorativo></h4>
+            <h4 class="card-text">t-lavorativo</h4>
         </div>
     </div> 
 </div>
 */
+
+//creo una array coi vari obj dei membri del team
+const ourTeam = [
+    {
+        name: 'Wayne Barnett',
+        role: 'Founder & CEO',
+        picture: 'wayne-barnett-founder-ceo.jpg',
+    },
+    {
+        name: 'Angela Caroll',
+        role: 'Chief Editor',
+        picture: 'angela-caroll-chief-editor.jpg',
+    },
+    {
+        name: 'Walter Gordon',
+        role: 'Office Manager',
+        picture: 'walter-gordon-office-manager.jpg',
+    },
+    {
+        name: 'Angela Lopez',
+        role: 'Social Media Manager',
+        picture: 'angela-lopez-social-media-manager.jpg',
+    },
+    {
+        name: 'Scott Estrada',
+        role: 'Developer',
+        picture: 'scott-estrada-developer.jpg',
+    },
+    {
+        name: 'Barbara Ramos',
+        role: 'Graphic Designer',
+        picture: 'barbara-ramos-graphic-designer.jpg',
+    }
+];
+
+//richiamo il div dove inserirò le card
+const cardContainer = document.querySelector('.row');
+console.dir(cardContainer);
+//creo una const in cui inserisco il testo
+let html = '';
+//creo un ciclo for che stampi ogni card
+for(let i = 0; i < ourTeam.length; i++) {
+    //richiamo la funzione e mi stampo per ogni ciclo il div della card in console 
+    html += cardMaker(ourTeam[i]);
+};
+console.log(html);
+//stampo nell'html gli elementi div delle card con le info degli obj
+cardContainer.innerHTML = html;
+
+//creo una funzione che mi stampi nell'html una card con delle info settate sulle proprietà dei vari obj nell'array
+function cardMaker(member) {
+    //creo una const con il template della card 
+    const card = `
+        <div class="col-4">
+            <div class="card my-3">
+                <img class="card-img-top" src="img/${member.picture} " alt="photo of ${member.name}">
+                <div class="card-body text-center">
+                    <h3 class="card-title fs-4">${member.name}</h3>
+                    <h4 class="card-text fs-5">${member.role}</h4>
+                </div>
+            </div> 
+        </div>    
+    `;
+    //la const è dichiarata nella funzione quindi devo fare un return per averla fuori 
+    return card;
+};
+
+
+
+
+
+
+
+
+
 
 
