@@ -93,7 +93,34 @@ function cardMaker(member) {
 //richiamo il pulsante di invio del form 
 const btn = document.getElementById('addMember');
 
+btn.addEventListener('click', function() {
+    const newMember = {
+        name: document.getElementById('memberName').value,
+        role: document.getElementById('memberRole').value,
+        picture: document.getElementById('memberPicture').value
+    };
+    console.log(newMember);
+    ourTeam.push(newMember);
+    cardContainer.innerHTML += newcardMaker(newMember);
+    
+});
 
+function newcardMaker(member) {
+    //creo una const con il template della card 
+    const card = `
+        <div class="col-4">
+            <div class="card my-3">
+                <img class="card-img-top" url="${member.picture} " alt="photo of ${member.name}">
+                <div class="card-body text-center">
+                    <h3 class="card-title fs-4">${member.name}</h3>
+                    <h4 class="card-text fs-5">${member.role}</h4>
+                </div>
+            </div> 
+        </div>    
+    `;
+    //la const è dichiarata nella funzione quindi devo fare un return per averla fuori 
+    return card;
+};
 
 
 
